@@ -19,6 +19,19 @@ data "aws_iam_policy_document" "transfer_server_assume_policy" {
     ]
 
     resources = ["*"]
+  },
+  {
+    effect = "Allow"
+
+    actions = [
+      "kms:Encrypt",
+      "kms:Decrypt",
+      "kms:ReEncrypt",
+      "kms:GenerateDataKey",
+      "kms:DescribeKey"
+    ]
+
+    resources = ["*"]
   }
 }
 
