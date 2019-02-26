@@ -1,23 +1,5 @@
-variable "bucket_name" {
-  description = "The S3 bucket name"
-}
-
-variable "force_destroy" {
-  description = "Delete all objects in bucket on destroy"
-  type = "boolean"
-  default = false
-}
-
-variable "public_bucket" {
-  description = "Allow public read access to bucket"
-  type = "boolean"
-  default = false
-}
-
-variable "versioned" {
-  description = "Version the bucket"
-  type = "boolean"
-  default = false
+variable "s3_bucket_id" {
+  description = "The S3 bucket id"
 }
 
 variable "transfer_server_name" {
