@@ -28,6 +28,4 @@ resource "aws_transfer_ssh_key" "transfer_server_ssh_key" {
   server_id = "${aws_transfer_server.transfer_server.id}"
   user_name = "${aws_transfer_user.transfer_server_user.user_name}"
   body      = "${var.transfer_server_ssh_key}"
-
-  tags       = "${module.label.tags}"
 }
