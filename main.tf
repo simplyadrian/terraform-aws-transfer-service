@@ -19,7 +19,7 @@ resource "aws_transfer_user" "transfer_server_user" {
   server_id      = "${aws_transfer_server.transfer_server.id}"
   user_name      = "${var.transfer_server_user_name}"
   role           = "${aws_iam_role.transfer_server_role.arn}"
-  home_directory = "/${var.s3_bucket_name}"
+  home_directory = "/${var.transfer_server_s3_bucket_name}"
 
   tags       = "${module.label.tags}"
 }
@@ -30,10 +30,10 @@ resource "aws_transfer_ssh_key" "transfer_server_ssh_key" {
   body      = "${var.transfer_server_ssh_key}"
 }
 
-module "external_dns" {
+module "transfer_server_external_dns" {
   source          = "git::https://github.com/IDS-Inc/terraform-aws-route53-alias.git?ref=master"
   aliases         = ["${var.aliases}"]
-  parent_zone_id  = "${var.parent_zone_id}"
+  parent_zone_id  = "${var.transfer_server_parent_zone_id}"
   target_dns_name = "${aws_transfer_server.transfer_server.endpoint}"
-  target_zone_id  = "${var.target_zone_id}"
+  target_zone_id  = "${var.transfer_server_target_zone_id}"
 }

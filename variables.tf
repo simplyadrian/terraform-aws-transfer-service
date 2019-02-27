@@ -33,12 +33,10 @@ variable "tags" {
 
 variable "region" {
   description = "The current AWS region"
-  default = "${data.aws_region.current.name}"
 }
 
 variable "account_id" {
   description = "The current AWS account id"
-  default = "${data.aws_caller_identity.current.account_id}"
 }
 
 variable "s3_bucket_name" {
