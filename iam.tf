@@ -37,6 +37,14 @@ resource "aws_iam_role_policy" "transfer_server_policy" {
     "Version": "2012-10-17",
     "Statement": [
         {
+            "Action": [
+                "s3:ListAllMyBuckets",
+                "s3:GetBucketLocation"
+            ],
+            "Resource": "*",
+            "Effect": "Allow"
+        },
+        {
             "Action": "s3:ListBucket",
             "Resource": "arn:aws:s3:::${var.transfer_server_s3_bucket_name}",
             "Effect": "Allow"
@@ -44,10 +52,20 @@ resource "aws_iam_role_policy" "transfer_server_policy" {
         {
             "Action": [
                 "s3:GetObject",
-                "s3:PutObject",
-                "s3:DeleteObject"
+                "s3:GetObjectVersion",
             ],
             "Resource": "arn:aws:s3:::${var.transfer_server_s3_bucket_name}/*",
+            "Effect": "Allow"
+        },
+        {
+            "Action": [
+                "s3:PutObject",
+                "s3:GetObject",
+                "s3:DeleteObjectVersion",
+                "s3:DeleteObject",
+                "s3:GetObjectVersion"
+            ],
+            "Resource": "arn:aws:s3:::${var.transfer_server_s3_bucket_name}/upload/*",
             "Effect": "Allow"
         },
         {
