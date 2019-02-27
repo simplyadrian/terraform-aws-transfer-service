@@ -19,7 +19,7 @@ resource "aws_transfer_user" "transfer_server_user" {
   server_id      = "${aws_transfer_server.transfer_server.id}"
   user_name      = "${var.transfer_server_user_name}"
   role           = "${aws_iam_role.transfer_server_role.arn}"
-  home_directory = "/${var.s3_bucket_id}"
+  home_directory = "/${var.s3_bucket_name}"
 
   tags       = "${module.label.tags}"
 }
