@@ -11,28 +11,38 @@ data "aws_iam_policy_document" "transfer_server_assume_role" {
 }
 
 data "aws_iam_policy_document" "transfer_server_assume_policy" {
-  statement {
-    effect = "Allow"
-
-    actions = [
-      "s3:*",
+  policy = <<POLICY
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": "s3:ListBucket",
+            "Resource": "arn:aws:s3:::${var.bucket_name}",
+            "Effect": "Allow"
+        },
+        {
+            "Action": [
+                "s3:GetObject",
+                "s3:PutObject",
+                "s3:DeleteObject"
+            ],
+            "Resource": "arn:aws:s3:::${var.bucket_name}/*",
+            "Effect": "Allow"
+        },
+        {
+            "Action": [
+                "kms:Encrypt",
+                "kms:Decrypt",
+                "kms:ReEncrypt",
+                "kms:GenerateDataKey",
+                "kms:DescribeKey"
+            ],
+            "Resource": "arn:aws:kms:${var.region}:${var.account_id}:key/${var.kms_id}",
+            "Effect": "Allow"
+        }
     ]
-
-    resources = ["*"]
-  },
-  {
-    effect = "Allow"
-
-    actions = [
-      "kms:Encrypt",
-      "kms:Decrypt",
-      "kms:ReEncrypt",
-      "kms:GenerateDataKey",
-      "kms:DescribeKey"
-    ]
-
-    resources = ["*"]
-  }
+}
+POLICY
 }
 
 data "aws_iam_policy_document" "transfer_server_to_cloudwatch_assume_policy" {

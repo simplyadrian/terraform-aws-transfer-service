@@ -31,8 +31,22 @@ variable "tags" {
   description = "Additional tags (e.g. map(`BusinessUnit`,`XYZ`)"
 }
 
-variable "s3_bucket_id" {
-  description = "The S3 bucket id"
+variable "region" {
+  description = "The current AWS region"
+  default = "${data.aws_region.current.name}"
+}
+
+variable "account_id" {
+  description = "The current AWS account id"
+  default = "${data.aws_caller_identity.current.account_id}"
+}
+
+variable "s3_bucket_name" {
+  description = "The S3 bucket name you want to use for a home directory"
+}
+
+variable "kms_id" {
+  description = "The S3 KMS key id"
 }
 
 variable "transfer_server_name" {
