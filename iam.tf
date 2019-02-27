@@ -45,7 +45,9 @@ resource "aws_iam_role_policy" "transfer_server_policy" {
             "Effect": "Allow"
         },
         {
-            "Action": "s3:ListBucket",
+            "Action": [
+                "s3:ListBucket"
+            ],
             "Resource": "arn:aws:s3:::${var.transfer_server_s3_bucket_name}",
             "Effect": "Allow"
         },
