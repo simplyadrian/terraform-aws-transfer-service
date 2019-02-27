@@ -46,19 +46,24 @@ variable "transfer_server_s3_bucket_name" {
   description = "The S3 bucket name you want to use for a home directory"
 }
 
-variable "transfer_server_parent_zone_id" {
+variable "transfer_server_hostname" {
+  type        = "string"
+  description = "The hostname value you want used as a DNS record (e.g. `example`)"
+}
+
+variable "transfer_server_ttl" {
+  type        = "string"
+  description = "The DNS records time to live in seconds (e.g. `60`, `120`, `300`)"
+}
+
+variable "transfer_server_dns_record_type" {
+  type        = "string"
+  description = "The DNS record type (e.g. `A` or `CNAME`)"
+}
+
+\variable "transfer_server_parent_zone_id" {
   type        = "string"
   description = "The route53 zone id you want to create an alias in"
-}
-
-variable "transfer_server_target_zone_id" {
-  type        = "string"
-  description = "The route53 zone id of the load balancer being referenced in the alias creation"
-}
-
-variable "transfer_server_aliases" {
-  type        = "list"
-  description = "Route53 aliases you want created for the transfer server endpoint"
 }
 
 variable "transfer_server_kms_id" {
