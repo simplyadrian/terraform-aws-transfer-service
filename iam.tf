@@ -10,7 +10,28 @@ data "aws_iam_policy_document" "transfer_server_assume_role" {
   }
 }
 
-data "aws_iam_policy_document" "transfer_server_assume_policy" {
+data "aws_iam_policy_document" "transfer_server_to_cloudwatch_assume_policy" {
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "logs:CreateLogGroup",
+      "logs:CreateLogStream",
+      "logs:PutLogEvents",
+    ]
+
+    resources = ["*"]
+  }
+}
+
+resource "aws_iam_role" "transfer_server_role" {
+  name               = "transfer_server_role"
+  assume_role_policy = "${data.aws_iam_policy_document.transfer_server_assume_role.0.json}"
+}
+
+resource "aws_iam_role_policy" "transfer_server_policy" {
+  name   = "transfer_server_policy"
+  role   = "${aws_iam_role.transfer_server_role.name}"
   policy = <<POLICY
 {
     "Version": "2012-10-17",
@@ -43,31 +64,6 @@ data "aws_iam_policy_document" "transfer_server_assume_policy" {
     ]
 }
 POLICY
-}
-
-data "aws_iam_policy_document" "transfer_server_to_cloudwatch_assume_policy" {
-  statement {
-    effect = "Allow"
-
-    actions = [
-      "logs:CreateLogGroup",
-      "logs:CreateLogStream",
-      "logs:PutLogEvents",
-    ]
-
-    resources = ["*"]
-  }
-}
-
-resource "aws_iam_role" "transfer_server_role" {
-  name               = "transfer_server_role"
-  assume_role_policy = "${data.aws_iam_policy_document.transfer_server_assume_role.0.json}"
-}
-
-resource "aws_iam_role_policy" "transfer_server_policy" {
-  name   = "transfer_server_policy"
-  role   = "${aws_iam_role.transfer_server_role.name}"
-  policy = "${data.aws_iam_policy_document.transfer_server_assume_policy.0.json}"
 }
 
 resource "aws_iam_role_policy" "transfer_server_to_cloudwatch_policy" {
