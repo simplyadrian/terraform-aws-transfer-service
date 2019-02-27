@@ -31,6 +31,12 @@ variable "tags" {
   description = "Additional tags (e.g. map(`BusinessUnit`,`XYZ`)"
 }
 
+variable "enabled" {
+  type        = "string"
+  default     = "true"
+  description = "Set to false to prevent the dns module from creating any resources"
+}
+
 variable "transfer_server_region" {
   type        = "string"
   description = "The current AWS region"
