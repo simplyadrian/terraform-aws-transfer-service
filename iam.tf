@@ -54,7 +54,7 @@ resource "aws_iam_role_policy" "transfer_server_policy" {
         {
             "Action": [
                 "s3:GetObject",
-                "s3:GetObjectVersion",
+                "s3:GetObjectVersion"
             ],
             "Resource": "arn:aws:s3:::${var.transfer_server_s3_bucket_name}/*",
             "Effect": "Allow"
