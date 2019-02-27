@@ -11,5 +11,5 @@ output "transfer_server_account_id" {
 }
 
 output "transfer_server_region" {
-  value = "{data.aws_region.current.name}"
+  value = "${data.aws_region.current.name}"
 }
