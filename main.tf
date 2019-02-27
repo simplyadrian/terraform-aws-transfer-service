@@ -32,7 +32,7 @@ resource "aws_transfer_ssh_key" "transfer_server_ssh_key" {
 
 module "transfer_server_external_dns" {
   source          = "git::https://github.com/IDS-Inc/terraform-aws-route53-alias.git?ref=master"
-  aliases         = ["${var.aliases}"]
+  aliases         = ["${var.transfer_server_aliases}"]
   parent_zone_id  = "${var.transfer_server_parent_zone_id}"
   target_dns_name = "${aws_transfer_server.transfer_server.endpoint}"
   target_zone_id  = "${var.transfer_server_target_zone_id}"

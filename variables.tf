@@ -32,23 +32,33 @@ variable "tags" {
 }
 
 variable "region" {
+  type        = "string"
   description = "The current AWS region"
 }
 
 variable "account_id" {
+  type        = "string"
   description = "The current AWS account id"
 }
 
-variable "s3_bucket_name" {
+variable "transfer_server_s3_bucket_name" {
+  type        = "string"
   description = "The S3 bucket name you want to use for a home directory"
 }
 
 variable "transfer_server_parent_zone_id" {
+  type        = "string"
   description = "The route53 zone id you want to create an alias in"
 }
 
 variable "transfer_server_target_zone_id" {
+  type        = "string"
   description = "The route53 zone id of the load balancer being referenced in the alias creation"
+}
+
+variable "transfer_server_aliases" {
+  type        = "list"
+  description = "Route53 aliases you want created for the transfer server endpoint"
 }
 
 variable "transfer_server_kms_id" {
