@@ -62,17 +62,21 @@ variable "transfer_server_aliases" {
 }
 
 variable "transfer_server_kms_id" {
+  type        = "string"
   description = "If your S3 bucket is encrypted with a KMS key, you will refer to the S3 kms_id here"
 }
 
 variable "transfer_server_name" {
+  type        = "string"
   description = "Transfer Server name"
 }
 
 variable "transfer_server_user_name" {
+  type        = "string"
   description = "User name for SFTP server"
 }
 
 variable "transfer_server_ssh_key" {
+  type        = "string"
   description = "SSH Key for transfer server user"
 }
