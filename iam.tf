@@ -17,7 +17,7 @@ data "aws_iam_policy_document" "transfer_server_assume_policy" {
     "Statement": [
         {
             "Action": "s3:ListBucket",
-            "Resource": "arn:aws:s3:::${var.bucket_name}",
+            "Resource": "arn:aws:s3:::${var.transfer_server_s3_bucket_name}",
             "Effect": "Allow"
         },
         {
@@ -26,7 +26,7 @@ data "aws_iam_policy_document" "transfer_server_assume_policy" {
                 "s3:PutObject",
                 "s3:DeleteObject"
             ],
-            "Resource": "arn:aws:s3:::${var.bucket_name}/*",
+            "Resource": "arn:aws:s3:::${var.transfer_server_s3_bucket_name}/*",
             "Effect": "Allow"
         },
         {
