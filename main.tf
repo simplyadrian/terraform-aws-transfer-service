@@ -33,7 +33,7 @@ resource "aws_transfer_ssh_key" "transfer_server_ssh_key" {
 module "transfer_server_dns_host_name" {
   source    = "git::https://github.com/IDS-Inc/terraform-aws-route53-cluster-hostname.git?ref=master"
   namespace = "${var.namespace}"
-  name      = "${var.transfer_server_host_name}"
+  name      = "${var.transfer_server_hostname}"
   stage     = "${var.stage}"
   ttl       = "${var.transfer_server_ttl}"
   type      = "${var.transfer_server_dns_record_type}"
