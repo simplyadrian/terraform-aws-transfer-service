@@ -38,6 +38,6 @@ module "transfer_server_dns_host_name" {
   ttl       = "${var.transfer_server_ttl}"
   type      = "${var.transfer_server_dns_record_type}"
   zone_id   = "${var.transfer_server_parent_zone_id}"
-  records   = "${aws_transfer_server.transfer_server.endpoint}"
+  records   = ["${aws_transfer_server.transfer_server.endpoint}"]
   enabled   = "${(length(var.transfer_server_parent_zone_id) > 0 && var.enabled == "true") ? "true" : "false"}"
 }
