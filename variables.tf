@@ -61,7 +61,7 @@ variable "transfer_server_dns_record_type" {
   description = "The DNS record type (e.g. `A` or `CNAME`)"
 }
 
-\variable "transfer_server_parent_zone_id" {
+variable "transfer_server_parent_zone_id" {
   type        = "string"
   description = "The route53 zone id you want to create an alias in"
 }
