@@ -37,7 +37,7 @@ data "aws_iam_policy_document" "transfer_server_assume_policy" {
                 "kms:GenerateDataKey",
                 "kms:DescribeKey"
             ],
-            "Resource": "arn:aws:kms:${var.region}:${var.account_id}:key/${var.transfer_server_kms_id}",
+            "Resource": "arn:aws:kms:${var.transfer_server_region}:${var.transfer_server_account_id}:key/${var.transfer_server_kms_id}",
             "Effect": "Allow"
         }
     ]

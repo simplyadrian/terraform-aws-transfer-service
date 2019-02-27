@@ -31,12 +31,12 @@ variable "tags" {
   description = "Additional tags (e.g. map(`BusinessUnit`,`XYZ`)"
 }
 
-variable "region" {
+variable "transfer_server_region" {
   type        = "string"
   description = "The current AWS region"
 }
 
-variable "account_id" {
+variable "transfer_server_account_id" {
   type        = "string"
   description = "The current AWS account id"
 }
