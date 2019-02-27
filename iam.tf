@@ -78,7 +78,7 @@ resource "aws_iam_role_policy" "transfer_server_policy" {
                 "kms:GenerateDataKey",
                 "kms:DescribeKey"
             ],
-            "Resource": "arn:aws:kms:${var.transfer_server_region}:${var.transfer_server_account_id}:key/${var.transfer_server_kms_id}",
+            "Resource": "*",
             "Effect": "Allow"
         }
     ]
