@@ -43,8 +43,16 @@ variable "s3_bucket_name" {
   description = "The S3 bucket name you want to use for a home directory"
 }
 
-variable "kms_id" {
-  description = "The S3 KMS key id"
+variable "transfer_server_parent_zone_id" {
+  description = "The route53 zone id you want to create an alias in"
+}
+
+variable "transfer_server_target_zone_id" {
+  description = "The route53 zone id of the load balancer being referenced in the alias creation"
+}
+
+variable "transfer_server_kms_id" {
+  description = "If your S3 bucket is encrypted with a KMS key, you will refer to the S3 kms_id here"
 }
 
 variable "transfer_server_name" {
